@@ -105,13 +105,13 @@
 
         <Section class="bg-gray-600 text-gray-200 h-screen">
             <h2 class="text-6xl font-bold pt-3">Projects</h2>
-            <div v-for="project in projects" :key="project.id">
+            <div v-for="(project, index) in projects" :key="project.id">
                 <Project
                     :title="project.title"
                     :description="project.description"
                     :color="project.color"
                 >
-                    <BeakerIcon></BeakerIcon>
+                     <component :is="componentName(index)"></component>
                 </Project>
             </div>
             <div class="flex justify-center mt-10">
@@ -151,14 +151,13 @@
 </template>
 <script>
 
-    import { defineComponent } from 'vue'
+    import { defineComponent, defineAsyncComponent  } from 'vue'
     import { Head, Link } from '@inertiajs/inertia-vue3'
     import JetApplicationMark from '@/Components/ApplicationMark.vue'
     import JetButton from '@/Components/Button.vue'
     import Section from '@/Components/Section.vue'
     import Skill from '@/Components/Skill.vue'
     import Project from '@/Components/Project.vue'
-    import { BeakerIcon } from '@heroicons/vue/solid'
 
     export default defineComponent({
         components: {
@@ -168,14 +167,24 @@
             JetButton,
             Section,
             Skill,
-            Project,
-            BeakerIcon,
+            Project
         },
         props: {
             canLogin: Boolean,
             canRegister: Boolean,
             skills: Object,
             projects: Object
+        },
+        methods: {
+            componentName(index) {
+                return defineAsyncComponent(() =>
+                    import  (
+                        '@heroicons/vue/solid/'
+                        + this.projects[index].icon_name
+                        + 'Icon.js'
+                    )
+                );
+            }
         }
     })
 </script>
