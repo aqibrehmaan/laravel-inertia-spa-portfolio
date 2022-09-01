@@ -105,6 +105,15 @@
 
         <Section class="bg-gray-600 text-gray-200 h-screen">
             <h2 class="text-6xl font-bold pt-3">Projects</h2>
+            <div v-for="project in projects" :key="project.id">
+                <Project
+                    :title="project.title"
+                    :description="project.description"
+                    :color="project.color"
+                >
+                    <BeakerIcon></BeakerIcon>
+                </Project>
+            </div>
             <div class="flex justify-center mt-10">
                 <jet-button class="
                     bg-purple-100
@@ -148,6 +157,8 @@
     import JetButton from '@/Components/Button.vue'
     import Section from '@/Components/Section.vue'
     import Skill from '@/Components/Skill.vue'
+    import Project from '@/Components/Project.vue'
+    import { BeakerIcon } from '@heroicons/vue/solid'
 
     export default defineComponent({
         components: {
@@ -156,12 +167,15 @@
             JetApplicationMark,
             JetButton,
             Section,
-            Skill
+            Skill,
+            Project,
+            BeakerIcon,
         },
         props: {
             canLogin: Boolean,
             canRegister: Boolean,
             skills: Object,
+            projects: Object
         }
     })
 </script>
