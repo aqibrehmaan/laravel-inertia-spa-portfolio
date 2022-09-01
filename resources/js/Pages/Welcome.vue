@@ -80,6 +80,15 @@
 
         <Section id="skills" class="bg-gray-200 text-gray-800 h-screen">
             <h2 class="text-6xl font-bold pt-3">Skills</h2>
+
+            <div class="grid grid-cols-2">
+                <div v-for="skill in skills" :key="skill.id">
+                    <Skill :background="skill.color">
+                        {{ skill.name }}
+                    </Skill>
+                </div>
+            </div>
+
              <div class="flex justify-center mt-10">
                 <jet-button class="
                     bg-indigo-800
@@ -131,6 +140,7 @@
     import JetApplicationMark from '@/Components/ApplicationMark.vue'
     import JetButton from '@/Components/Button.vue'
     import Section from '@/Components/Section.vue'
+    import Skill from '@/Components/Skill.vue'
 
     export default defineComponent({
         components: {
@@ -138,11 +148,13 @@
             Link,
             JetApplicationMark,
             JetButton,
-            Section
+            Section,
+            Skill
         },
         props: {
             canLogin: Boolean,
             canRegister: Boolean,
+            skills: Object,
         }
     })
 </script>
