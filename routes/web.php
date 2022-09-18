@@ -31,9 +31,9 @@ Route::get('/', function () {
 Route::post('contact', [ContactController::class, 'contact'])
     ->name('contact');
 
-Route::get('/test', function () {
-    return new ContactedMessage('test@test.com', 'Just testing.');
-});
+// Route::get('/test', function () {
+//     return new ContactedMessage('test@test.com', 'Just testing.');
+// });
 
 
 Route::middleware([

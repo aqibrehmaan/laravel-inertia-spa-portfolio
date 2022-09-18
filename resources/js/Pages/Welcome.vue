@@ -145,6 +145,8 @@
                     v-model="form.email"
                 ></jet-input>
 
+                 <jet-input-error :message="form.errors.email"/>
+
                 <textarea
                     class="px-5 py-3 w-96 border border-gray-600 rounded mt-5"
                     name="message"
@@ -152,10 +154,20 @@
                     v-model="form.message"
                 ></textarea>
 
+                <jet-input-error :message="form.errors.message"/>
+
                 <jet-button
                     class="px-5 py-3 mt-5 w-96 bg-purple-400 justify-center rounded-xl text-sm"
+                :disabled="form.processing"
                 >
                     Get in touch
+                    <span class="animate-spin mr-1" v-show="form.processing">
+                        &#9696;
+                    </span>
+
+                    <span v-show="!form.processing">
+                        Get in touch
+                    </span>
                 </jet-button>
             </form>
         </div>
@@ -191,6 +203,7 @@
     import JetButton from '@/Components/Button.vue'
     import JetModal from '@/Components/Modal.vue'
     import JetInput from '@/Components/Input.vue'
+    import JetInputError from '@/Components/InputError.vue'
     import Section from '@/Components/Section.vue'
     import Skill from '@/Components/Skill.vue'
     import Project from '@/Components/Project.vue'
@@ -203,6 +216,7 @@
             JetButton,
             JetModal,
             JetInput,
+            JetInputError,
             Section,
             Skill,
             Project
