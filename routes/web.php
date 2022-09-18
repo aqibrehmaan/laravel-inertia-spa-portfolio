@@ -5,6 +5,7 @@ use App\Models\Skill;
 use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::get('/', function () {
         'projects' => Project::all(),
     ]);
 });
+
+Route::post('contact', [ContactController::class, 'contact'])
+    ->name('contact');
+
 
 Route::middleware([
     'auth:sanctum',
